@@ -1,0 +1,297 @@
+/* ======================================
+   绝地求生 - Battle Royale 全局样式
+   军事/战术风格暗色主题
+   ====================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;600;700&display=swap');
+
+:root {
+    --primary-gold: #FFD700;
+    --military-green: #4CAF50;
+    --danger-red: #FF4444;
+    --armor-blue: #42A5F5;
+    --dark-bg: #0a0a0f;
+    --panel-bg: rgba(10, 10, 20, 0.85);
+    --panel-border: rgba(255, 215, 0, 0.2);
+    --font-title: 'Orbitron', sans-serif;
+    --font-body: 'Rajdhani', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body {
+    background: var(--dark-bg);
+    overflow: hidden;
+    cursor: crosshair;
+    font-family: var(--font-body);
+}
+
+/* Canvas */
+#gameCanvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background: #1a1a2e;
+}
+
+/* ================== 开始菜单 ================== */
+#startMenu {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    background: radial-gradient(ellipse at center, rgba(10,10,30,0.9) 0%, rgba(0,0,0,0.98) 100%);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.menu-container {
+    text-align: center;
+    padding: 50px 60px;
+    background: rgba(15, 15, 30, 0.7);
+    border: 1px solid var(--panel-border);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 
+        0 0 60px rgba(255, 215, 0, 0.05),
+        inset 0 0 60px rgba(255, 215, 0, 0.02);
+    position: relative;
+    overflow: hidden;
+    max-width: 550px;
+    width: 90%;
+}
+
+.menu-container::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    background: linear-gradient(45deg, transparent 40%, rgba(255,215,0,0.1) 50%, transparent 60%);
+    border-radius: 20px;
+    z-index: -1;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+.game-title {
+    font-family: var(--font-title);
+    font-size: 3.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #FFD700 0%, #FFA000 50%, #FFD700 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));
+    animation: pulse 2s ease-in-out infinite;
+    margin-bottom: 5px;
+    letter-spacing: 8px;
+}
+
+.game-subtitle {
+    font-family: var(--font-title);
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 12px;
+    margin-bottom: 35px;
+    font-weight: 700;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 50px;
+    font-family: var(--font-body);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #388E3C, #4CAF50, #66BB6A);
+    border: 2px solid rgba(76, 175, 80, 0.5);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 0 30px rgba(76, 175, 80, 0.5), 0 10px 30px rgba(0,0,0,0.3);
+    background: linear-gradient(135deg, #43A047, #66BB6A, #81C784);
+}
+
+.btn-primary:hover::after {
+    opacity: 1;
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+}
+
+/* 操作说明网格 */
+.controls-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.control-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.control-item kbd {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary-gold);
+    background: rgba(255, 215, 0, 0.1);
+    padding: 3px 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.control-item span {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.version-info {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 2px;
+}
+
+/* ================== 游戏结束画面 ================== */
+#gameOverScreen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.85);
+    animation: fadeIn 0.8s ease-out;
+}
+
+.gameover-container {
+    text-align: center;
+    padding: 50px 70px;
+    background: rgba(15, 15, 30, 0.8);
+    border: 1px solid var(--panel-border);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.gameover-title {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 15px;
+    letter-spacing: 5px;
+}
+
+.gameover-title.winner {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #FFD700, #FFA000, #FFD700);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+.gameover-rank {
+    font-family: var(--font-title);
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--primary-gold);
+    margin-bottom: 25px;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+.gameover-stats {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 35px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 25px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-gold);
+}
+
+/* ================== 动画 ================== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pulse {
+    0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4)); }
+    50% { filter: drop-shadow(0 0 35px rgba(255, 215, 0, 0.7)); }
+}
+
+@keyframes glow {
+    from { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5)); }
+    to { filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.9)); }
+}
+
+@keyframes shimmer {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+}

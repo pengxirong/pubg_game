@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="绝地求生 - 网页版大逃杀游戏">
+    <title>绝地求生 - Battle Royale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- 开始菜单 -->
+    <div id="startMenu">
+        <div class="menu-container">
+            <div class="menu-bg-effects">
+                <div class="particle-bg"></div>
+            </div>
+            <h1 class="game-title">绝地求生</h1>
+            <p class="game-subtitle">BATTLE ROYALE</p>
+            <button id="startBtn" class="btn-primary" onclick="GameEngine.startGame()">
+                <span class="btn-icon">▶</span> 开始游戏
+            </button>
+            <div class="controls-grid">
+                <div class="control-item"><kbd>W A S D</kbd><span>移动</span></div>
+                <div class="control-item"><kbd>鼠标</kbd><span>瞄准</span></div>
+                <div class="control-item"><kbd>左键</kbd><span>射击</span></div>
+                <div class="control-item"><kbd>R</kbd><span>换弹</span></div>
+                <div class="control-item"><kbd>E</kbd><span>拾取</span></div>
+                <div class="control-item"><kbd>1 / 2</kbd><span>切枪</span></div>
+                <div class="control-item"><kbd>4</kbd><span>医疗包</span></div>
+                <div class="control-item"><kbd>5</kbd><span>能量饮料</span></div>
+                <div class="control-item"><kbd>M</kbd><span>大地图</span></div>
+            </div>
+            <p class="version-info">v1.0 | 30名AI对手 | 缩圈大逃杀</p>
+        </div>
+    </div>
+
+    <!-- 游戏结束画面 -->
+    <div id="gameOverScreen" style="display:none;">
+        <div class="gameover-container">
+            <h1 id="gameOverTitle" class="gameover-title">游戏结束</h1>
+            <div id="gameOverRank" class="gameover-rank">#1</div>
+            <div class="gameover-stats">
+                <div class="stat-item">
+                    <span class="stat-label">击杀</span>
+                    <span id="statKills" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">存活时间</span>
+                    <span id="statTime" class="stat-value">0:00</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">伤害输出</span>
+                    <span id="statDamage" class="stat-value">0</span>
+                </div>
+            </div>
+            <button id="restartBtn" class="btn-primary" onclick="GameEngine.restart()">
+                <span class="btn-icon">↻</span> 再来一局
+            </button>
+        </div>
+    </div>
+
+    <!-- 加载游戏脚本 -->
+    <script src="js/input.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/weapons.js"></script>
+    <script src="js/bullet.js"></script>
+    <script src="js/loot.js"></script>
+    <script src="js/zone.js"></script>
+    <script src="js/airdrop.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/bot.js"></script>
+    <script src="js/hud.js"></script>
+    <script src="js/minimap.js"></script>
+    <script src="js/engine.js"></script>
+</body>
+</html>
